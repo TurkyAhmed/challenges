@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/bootstrap-5.0.2/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="./assets/fontawesome-free-6.4.2-web/css/all.css">
+    <script src="./assets/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        .my-container{
+            min-width: 400px;
+            width: 800px;
+            min-height: 700px;
+            max-width: auto;
+            background-color: #75ada7;
+            margin: 20px auto;
+            border-radius:10px ;
+            box-shadow: 0px 0px 5px 1px #333;       
+        }
+
+        input[type=text]{
+            width: 25rem;
+            height: 3rem;
+            border-radius: 10px;
+            
+        }
+
+        #add{
+            width: 5rem;
+            height: 2.5rem;
+            border: 3px solid rgba(51, 77, 88, 0.647) ;
+            border-radius: 10px;
+        }
+
+        button:not(#add){
+            height: 100%;
+            width: 2em;
+            border: none;
+            background-color: transparent;
+        }
+
+        .btn-delete i{
+            display: none;
+        }
+
+        .list-container > div:hover  .btn-delete i,
+        .list-container > div:focus  .btn-delete i{
+            display: inline-block;
+        }
+
+        .task-done{
+            border-top-color: red !important;
+        }
+
+        .task-done > p{
+            text-decoration: line-through;
+        }
+
+        .list-container div{
+            /* border-radius: 10px 100px / 10px 100px; */
+            border-radius: 0px 100px / 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="my-container">
+        <div class="row flex-column align-items-center">
+            <h1 class="text-center mt-5 text-white"> To Do List </h1>
+            <div class="text-center">
+                <input type="text" id="task" class="mb-4">
+                <button id="add"> Add</button>
+            </div>
+
+            <section class='list-container row gab-3'>
+
+                <div class="col-10 col-sm-5 border-top border-3 border-success bg-white mt-3 mx-auto position-relative">
+                    <button class="btn-done position-absolute start-0 "><i class="fa-solid fa-hand-point-right"></i></button>
+                    <p class="d-inline-block ps-4">Task 1</p>
+                    <button class="btn-delete text-danger position-absolute top-0 end-0"><i class="fa-solid fa-trash-can "></i></button>
+                </div>
+
+                <div class="col-10 col-sm-5 border-top border-3 border-success bg-white mt-3  mx-auto position-relative">
+                    <button class="btn-done position-absolute start-0 "><i class="fa-solid fa-hand-point-right"></i></button>
+                    <p class="d-inline-block ps-4">Task 2</p>
+                    <button class="btn-delete text-danger position-absolute top-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+
+            </section>
+            
+        </div>
+        
+
+    </div>
+
+
+    <script src="./assets/bootstrap-5.0.2/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#add').click(() => {
+                if ($('#task').val()) {
+                    $('.list-container').append(`
+                    <div class="col-5 border-top border-3 border-success bg-white mt-3 mx-auto position-relative">
+                        <button class="btn-done position-absolute start-0"><i class="fa-solid fa-hand-point-right"></i></button>
+                        <p class="d-inline-block ps-4">${$('#task').val()}</p>
+                        <button class="btn-delete text-danger position-absolute top-0 end-0"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>`);
+    
+                    $('#task').val("");
+                    attachEventHandlers();
+                }              
+            });
+    
+            attachEventHandlers();
+    
+            function attachEventHandlers() {
+                $('.btn-done').off('click').on('click', function() {
+                    $(this).parent().toggleClass('task-done');
+                });
+
+                $('.btn-delete').on('click ', function(){
+                    $(this).parent().remove();
+                    console.log('ok')
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
