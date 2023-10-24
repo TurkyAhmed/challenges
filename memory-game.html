@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #333;
+        }
+        .card-container{
+            display: flex;
+            margin: 30px auto;
+            width: 680px;
+            height: 700px;
+            background-color: #777e7e;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            border-radius: 30px;
+        }
+
+        .card{
+            width: 120px;
+            height: 180px;
+            background-color: #333;
+            border: 3px solid #434242;
+            /* border-radius: 0px 20px 0px 20px; */
+            /* overflow: hidden; */
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            margin: 10px;
+            cursor: pointer;
+        }
+ 
+        .only-rotate{
+            transform: rotateY(-180deg);
+        }
+        .front-rotate{
+            transform: rotateY(0);
+            transition-property: transform;
+            transition-delay: 1s;
+        }
+
+        .reset-rotate{
+            transform: rotateY(0);
+            transition:transform 1s;        
+        }
+
+        .face{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+       .card .front{
+            background-color:#333 ;       
+       }
+
+       .card .back{
+        transform: rotateY(180deg);
+       }
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="card-container">
+
+            <div class="card" onclick="simallar(0)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1516912481808-3406841bd33c.jpg" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(1)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/bruce-lee.png" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(2)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/IMG_7976.JPG" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(3)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1588263823647-ce3546d42bfe.jpg" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(4)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/bruce-lee.png" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(5)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/IMG_7976.JPG" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(6)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1495468286609-71018e87abc5.jpeg" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(7)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/snowboard_PNG8006.png" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(8)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1588263823647-ce3546d42bfe.jpg" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(9)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1495468286609-71018e87abc5.jpeg" alt="">
+                </div>              
+            </div>
+
+            
+            <div class="card" onclick="simallar(10)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/snowboard_PNG8006.png" alt="">
+                </div>              
+            </div>
+
+            <div class="card" onclick="simallar(11)">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="./assets/images/photo-1516912481808-3406841bd33c.jpg" alt="">
+                </div>              
+            </div>
+
+      
+
+        </section>
+
+
+        <script>
+            let count=0;
+            let preCard;
+            let preImage;
+            let nextCard;
+            let nextImage;
+            
+            function simallar(index){
+                let card = document.getElementsByClassName('card');
+                let image = document.getElementsByTagName('img');
+                   
+                if(count==0){
+                    preCard=card[index];
+                    preImage=image[index];
+                    preCard.classList.add('only-rotate');
+                    count++;
+
+                }else if(count == 1){
+                    nextCard=card[index];
+                    nextImage=image[index];
+                    nextCard.classList.add('only-rotate');
+                    count=0;
+                
+                    if(preImage.src == nextImage.src){
+                        
+                        console.log('same');
+                        nextCard=0;
+                        preCard=0;
+                        preImage=0;
+                        nextImage=0;
+
+                    }else{
+                        setTimeout(()=>{
+                            preCard.classList.remove('only-rotate');
+                            nextCard.classList.remove('only-rotate');
+                            console.log('deffirent');
+                            nextCard=0;
+                            preCard=0;
+                            preImage=0;
+                            nextImage=0;
+                        },1000);  
+                    }
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
